@@ -74,8 +74,8 @@ if __name__ == '__main__':
     input_file = open('LayoutlMV3InferenceOutput.json')
     data = json.load(input_file)
     for x in data:
-        median = calculate_median(x.output)
-        groups.append(group_data(x.output, median))
+        median = calculate_median(x['output'])
+        groups.append(group_data(x['output'], median))
     groups = sync_names(groups)
     inference_out = [json.dumps(groups, ensure_ascii=False)][0]
     with open('Cleaned_Group.json', 'w') as inf_out:
