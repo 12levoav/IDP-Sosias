@@ -115,11 +115,13 @@ def sync_names(groups):
         group = clean_groups[z]
         if ("PER-BIRTHDAY" in group and len(group["PER-BIRTHDAY"]) == 1) or (
                 "PER-CITY" in group and len(group["PER-CITY"]) == 1):
-            group["PER-NAME"] = sync_per_name(group)
+            if sync_per_name(group) is not None:
+                group["PER-NAME"] = sync_per_name(group)
         if ("COMP-CITY" in group and (len(group["COMP-CITY"]) == 1)) or (
                 "COMP-DISTRICT_COURT" in group and (len(group["COMP-DISTRICT_COURT"]) == 1)) or (
                 "COMP-ID" in group and (len(group["COMP-ID"]) == 1)):
-            group["COMP-NAME"] = sync_comp_name(group)
+            if sync_comp_name(group) is not None:
+                group["COMP-NAME"] = sync_comp_name(group)
         clean_groups[z] = group
     return clean_groups
 
